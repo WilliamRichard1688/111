@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>កម្មវិធីគណនា​របាយការណ៍​ហិរញ្ញវត្ថុ</title>
+    <style>
+        /* Khmer Font Import */
+        @import url('https://fonts.googleapis.com/css2?family=Hanuman:wght@400;700&display=swap');
+
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* New Professional Blue/White Theme (Applied) */
+        body {
+            /* Kept 'Hanuman' font first */
+            font-family: 'Hanuman', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #f4f7f9; /* Light blue-grey background */
+            padding: 10px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto; /* Added top/bottom margin */
+            background: #ffffff; /* Crisp white container */
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); /* Softer shadow */
+            border: 1px solid #dee2e6; /* Subtle border */
+        }
+
+        h1 {
+            color: #004a99; /* Darker, corporate blue */
+            text-align: center;
+            margin-bottom: 8px;
+            font-size: 1.8em;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #555; /* Darker grey for better readability */
+            margin-bottom: 25px;
+            font-size: 0.95em;
+        }
+
+        .section {
+            margin-bottom: 25px;
+            border: 1px solid #dee2e6; /* Cleaner border */
+            border-radius: 10px;
+            padding: 15px;
+            background: #ffffff; /* White section background */
+        }
+
+        .section-title {
+            font-size: 1.3em;
+            color: #007bff; /* Primary professional blue */
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #007bff; /* Thinner, blue border */
+            font-weight: 700; /* Kept from Khmer CSS */
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 5px;
+            font-size: 0.95em;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ccc; /* Standard border */
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #007bff; /* Blue border on focus */
+            box-shadow: none; /* Removed focus ring */
+        }
+
+        .total-row {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 2px solid #e0e0e0; /* Lighter top border */
+        }
+
+        .total-label {
+            display: block;
+            font-weight: 700;
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .total-value {
+            display: block;
+            font-weight: 700;
+            font-size: 1.4em;
+            color: #007bff; /* Blue for total */
+            padding: 14px;
+            background: #f8f9fa; /* Light grey background for emphasis */
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #dee2e6; /* Subtle border */
+        }
+
+        .summary {
+            background: #ffffff; /* Solid white background */
+            color: #333; /* Default dark text color */
+            padding: 20px;
+            border-radius: 10px; /* Matched radius */
+            margin-top: 25px;
+            border: 1px solid #dee2e6; /* Added border */
+        }
+
+        .summary h2 {
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            text-align: center;
+            font-weight: 700;
+            color: #007bff; /* Changed text color to blue */
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 12px;
+            background: #f8f9fa; /* Light grey background */
+            border-radius: 8px;
+            font-size: 1em;
+            transition: background 0.2s;
+        }
+
+        .summary-item:hover {
+            background: #e9ecef; /* Darker grey on hover */
+        }
+
+        .summary-item span:first-child {
+            flex: 1;
+            color: #444; /* Dark grey text */
+        }
+
+        .summary-item span:last-child {
+            font-weight: 700;
+            text-align: right;
+            margin-left: 10px;
+        }
+
+        .summary-item.highlight {
+            background: #e6f2ff; /* Light blue highlight */
+            font-size: 1.15em;
+            font-weight: 700;
+            padding: 15px;
+        }
+
+        .summary-item.highlight span:first-child {
+            color: #004a99; /* Dark blue text */
+        }
+
+        /* Semantic colors for profit/loss */
+        .negative {
+            color: #ff6b6b !important; /* Added !important */
+        }
+
+        .positive {
+            color: #51cf66 !important; /* Added !important */
+        }
+
+        /* Responsive styles */
+        @media (min-width: 768px) {
+            body {
+                padding: 20px;
+            }
+
+            .container {
+                padding: 40px;
+                margin: 40px auto; /* Added from Eng */
+            }
+
+            h1 {
+                font-size: 2.5em;
+                margin-bottom: 10px;
+            }
+
+            .subtitle {
+                margin-bottom: 40px;
+                font-size: 1.1em;
+            }
+
+            .section {
+                padding: 25px;
+                margin-bottom: 35px;
+            }
+
+            .section-title {
+                font-size: 1.5em;
+                margin-bottom: 20px;
+            }
+
+            .input-group {
+                display: grid;
+                grid-template-columns: 1fr 300px;
+                gap: 20px;
+                align-items: center;
+            }
+
+            label {
+                margin-bottom: 0;
+                font-size: 1em;
+                text-align: left; /* Added from Eng */
+            }
+
+            input[type="number"] {
+                width: 300px;
+                justify-self: end; /* Added from Eng */
+            }
+
+            .total-row {
+                display: grid;
+                grid-template-columns: 1fr 300px;
+                gap: 20px;
+                align-items: center;
+                padding-top: 20px;
+            }
+
+            .total-label {
+                font-size: 1.2em;
+                margin-bottom: 0;
+                text-align: right; /* Added from Eng */
+                color: #333; /* Added from Eng */
+            }
+
+            .total-value {
+                font-size: 1.3em;
+                text-align: right;
+                padding-right: 14px; /* Added from Eng */
+            }
+
+            .summary {
+                padding: 30px;
+                margin-top: 40px;
+            }
+
+            .summary h2 {
+                font-size: 2em;
+                margin-bottom: 25px;
+            }
+
+            .summary-item {
+                font-size: 1.1em;
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+
+            .summary-item.highlight {
+                font-size: 1.3em;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .input-group {
+                grid-template-columns: 1fr 350px;
+            }
+
+            input[type="number"] {
+                width: 350px;
+            }
+
+            .total-row {
+                grid-template-columns: 1fr 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 របាយការណ៍​ហិរញ្ញវត្ថុ</h1>
+        <p class="subtitle">បញ្ចូល​ទិន្នន័យ​ហិរញ្ញវត្ថុ​អាជីវកម្ម​របស់​អ្នក​ខាងក្រោម</p>
+
+        <div class="section">
+            <h2 class="section-title">📈 ចំណូល</h2>
+            <div class="input-group">
+                <label>ចំណូល​ពី​ការ​លក់</label>
+                <input type="number" id="sales" value="50000" min="0" step="0.01">
+            </div>
+            <div class="input-group">
+                <label>ចំណូល​ពី​សេវាកម្ម</label>
+                <input type="number" id="service" value="25000" min="0" step="0.01">
+            </div>
+            <div class="input-group">
+                <label>ចំណូល​ផ្សេងៗ</label>
+                <input type="number" id="otherIncome" value="2000" min="0" step="0.01">
+            </div>
+            <div class="total-row">
+                <span class="total-label">ចំណូល​សរុប៖</span>
+                <span class="total-value" id="totalRevenue">$0.00</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">📦 ថ្លៃដើម​ទំនិញ​លក់ (COGS)</h2>
+            <div class="input-group">
+                <label>សម្ភារៈ/ទំនិញ​ឃ្លាំង</label>
+                <input type="number" id="materials" value="15000" min="0" step="0.01">
+            </div>
+            <div class="input-group">
+                <label>កម្លាំង​ពលកម្ម​ផ្ទាល់</label>
+                <input type="number" id="directLabor" value="8000" min="0" step="0.01">
+            </div>
+            <div class="input-group">
+                <label>ចំណាយ​ទូទៅ​ក្នុង​ផលិតកម្ម</label>
+                <input type="number" id="overhead" value="3000" min="0" step="0.01">
+            </div>
+            <div class="total-row">
+                <span class="total-label">ថ្លៃដើម​ទំនិញ​លក់​សរុប៖</span>
+                <span class="total-value" id="totalCOGS">$0.00</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">⚙️ ចំណាយ​ប្រតិបត្តិការ</h2>
+            <div class="input-group">
+                <label>ប្រាក់ខែ និង​ឈ្នួល</label>
+                <input type="number" id="salaries" value="20000" min="0" step="0.01">
+            </div>
+            <div class="input-group">
+                <label>ថ្លៃ​ជួល</label>
+                <input type="number" id="rent" value="5000" min="0" step="0.01">
+            </div>
+            <div class="input-group">
+                <label>ថ្លៃ​សេវា​ប្រើប្រាស់ (ទឹក ភ្លើង)</label>
+                <input type="number" id="utilities" value="1500" min="0" step="0.01">
+            </div>
+            <div class="input-group">
+                <label>ទីផ្សារ និង​ផ្សព្វផ្សាយ</label>
+                <input type="number" id="marketing" value="3000" min="0" step="0.01">
+            </div>
+            <div class="input-group">
+                <label>ថ្លៃ​ធានារ៉ាប់រង</label>
+                <input type="number" id="insurance" value="1200" min="0" step="0.01">
+            </div>
+            <div class="input-group">
+                <label>សម្ភារៈ​ការិយាល័យ</label>
+                <input type="number" id="supplies" value="800" min="0" step="0.01">
+            </div>
+            <div class="input-group">
+                <label>ចំណាយ​ផ្សេងៗ</label>
+                <input type="number" id="otherExpenses" value="2500" min="0" step="0.01">
+            </div>
+            <div class="total-row">
+                <span class="total-label">ចំណាយ​ប្រតិបត្តិការ​សរុប៖</span>
+                <span class="total-value" id="totalOpEx">$0.00</span>
+            </div>
+        </div>
+
+        <div class="summary">
+            <h2>🧾 សេចក្តី​សង្ខេប​ហិរញ្ញវត្ថុ</h2>
+            <div class="summary-item">
+                <span>ចំណូល​សរុប៖</span>
+                <span id="summaryRevenue">$0.00</span>
+            </div>
+            <div class="summary-item">
+                <span>ថ្លៃដើម​ទំនិញ​លក់​សរុប៖</span>
+                <span id="summaryCOGS">$0.00</span>
+            </div>
+            <div class="summary-item">
+                <span>ប្រាក់​ចំណេញ​ដុល៖</span>
+                <span id="grossProfit">$0.00</span>
+            </div>
+            <div class="summary-item">
+                <span>ចំណាយ​ប្រតិបត្តិការ៖</span>
+                <span id="summaryOpEx">$0.00</span>
+            </div>
+            <div class="summary-item highlight">
+                <span>ប្រាក់​ចំណេញ/ខាត​សុទ្ធ៖</span>
+                <span id="netProfit">$0.00</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function formatCurrency(value) {
+            // Use 'km-KH' locale for Khmer number formatting (10.000,00)
+            return '$' + parseFloat(value).toLocaleString('km-KH', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+        }
+
+        function calculate() {
+            const sales = parseFloat(document.getElementById('sales').value) || 0;
+            const service = parseFloat(document.getElementById('service').value) || 0;
+            const otherIncome = parseFloat(document.getElementById('otherIncome').value) || 0;
+            const totalRevenue = sales + service + otherIncome;
+
+            const materials = parseFloat(document.getElementById('materials').value) || 0;
+            const directLabor = parseFloat(document.getElementById('directLabor').value) || 0;
+            const overhead = parseFloat(document.getElementById('overhead').value) || 0;
+            const totalCOGS = materials + directLabor + overhead;
+
+            const salaries = parseFloat(document.getElementById('salaries').value) || 0;
+            const rent = parseFloat(document.getElementById('rent').value) || 0;
+            const utilities = parseFloat(document.getElementById('utilities').value) || 0;
+            const marketing = parseFloat(document.getElementById('marketing').value) || 0;
+            const insurance = parseFloat(document.getElementById('insurance').value) || 0;
+            const supplies = parseFloat(document.getElementById('supplies').value) || 0;
+            const otherExpenses = parseFloat(document.getElementById('otherExpenses').value) || 0;
+            const totalOpEx = salaries + rent + utilities + marketing + insurance + supplies + otherExpenses;
+
+            const grossProfit = totalRevenue - totalCOGS;
+            const netProfit = grossProfit - totalOpEx;
+
+            document.getElementById('totalRevenue').textContent = formatCurrency(totalRevenue);
+            document.getElementById('totalCOGS').textContent = formatCurrency(totalCOGS);
+            document.getElementById('totalOpEx').textContent = formatCurrency(totalOpEx);
+
+            document.getElementById('summaryRevenue').textContent = formatCurrency(totalRevenue);
+            document.getElementById('summaryCOGS').textContent = formatCurrency(totalCOGS);
+            document.getElementById('grossProfit').textContent = formatCurrency(grossProfit);
+            document.getElementById('summaryOpEx').textContent = formatCurrency(totalOpEx);
+
+            const netProfitElement = document.getElementById('netProfit');
+            netProfitElement.textContent = formatCurrency(netProfit);
+
+            // This JS logic is slightly different from the English one but functions
+            // correctly with the new CSS (thanks to !important)
+            if (netProfit < 0) {
+                netProfitElement.className = 'negative';
+            } else if (netProfit > 0) {
+                netProfitElement.className = 'positive';
+            } else {
+                netProfitElement.className = '';
+            }
+        }
+
+        const inputs = document.querySelectorAll('input[type="number"]');
+        inputs.forEach(input => {
+            input.addEventListener('input', calculate);
+        });
+
+        // Initial calculation on page load
+        calculate();
+    </script>
+</body>
+</html>
